@@ -19,13 +19,13 @@ end
 
 if not set -q NIX_PROFILES
     # Set up the per-user profile. This part should be kept in sync with nixpkgs:nixos/modules/programs/shell.nix
-    set NIX_LINK $HOME/.nix-profile
+    set -l NIX_LINK $HOME/.nix-profile
 
     # Append ~/.nix-defexpr/channels to $NIX_PATH so that <nixpkgs> paths work when the user has fetched the Nixpkgs channel.
     if set -q NIX_PATH
-        set NIX_PATH $NIX_PATH:$HOME/.nix-defexpr/channels
+        set -x NIX_PATH $NIX_PATH:$HOME/.nix-defexpr/channels
     else
-        set NIX_PATH $HOME/.nix-defexpr/channels
+        set -x NIX_PATH $HOME/.nix-defexpr/channels
     end
 
     # Set up environment.
